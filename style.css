@@ -24,7 +24,8 @@ body {
 }
 
 .top-box2 {
-    float: left;
+    /* float: left; */
+    display:inline-block;
     width: 100%;
 
 }

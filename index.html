@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="library/jspdf.umd.min.js"></script>
+  <script type="text/javascript" src="library/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.4.0/jspdf.plugin.autotable.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 </head>
 
 <body>
@@ -54,7 +59,7 @@
 
         <div class="ele">
           <h2>Result</h2>
-          <table>
+          <table id="myTable">
             <tr>
               <th>CustomerID</th>
               <th>CustomerName</th>
@@ -136,31 +141,32 @@
     </div>
   </div>
 
-  <div class="top-box2 ">
-    <div class="nav-box">
+  <div class="top-box2">
       <div class="wrapper">
-        <div class="logo2">
-          <h2>Tags:</h2>
-          <p>Lorem ipsum dolor sit amet.</p>
-          <p><b>Rules in common</b></p>
-          <P>Lorem ipsum dolor sit amet.</P>
-        </div>
-        <div class="rightbut" style="position: relative;">
-          <div id="addTagBtn">Add Tag</div>
-          <div id="buttonSets">
-            <button>Tag 1</button>
-            <button>Tag 2</button>
-            <button class="hiddenElement">Tag 3</button>
-            <button class="hiddenElement">Tag 4</button>
+        <div class="bottomLeftContainer" style="background-color: white!;">
+          <div class="logo2">
+            <h2>Tags:</h2>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p><b>Rules in common</b></p>
+            <P>Lorem ipsum dolor sit amet.</P>
           </div>
-          <div id="seeMoreBtn">
-            See more
+          <div class="rightbut" style="position: relative;">
+            <div id="addTagBtn">Add Tag</div>
+            <div id="buttonSets">
+              <button>Tag 1</button>
+              <button>Tag 2</button>
+              <button class="hiddenElement">Tag 3</button>
+              <button class="hiddenElement">Tag 4</button>
+            </div>
+            <div id="seeMoreBtn">
+              See more
+            </div>
           </div>
         </div>
-
+        <div class="bottomRightContainer">
         <div class="ele1">
           <div class="ele2">
-            <p><button>Generate Report</button></p>
+            <p><button id="exportPdfButton">Generate Report</button></p>
             <p><b>Last generated: </b></p>
 
           </div>
@@ -173,10 +179,18 @@
           </div>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 
+  <script type="text/javascript" src="./index.js"></script>
+  <script>
+    document.getElementById("exportPdfButton").addEventListener("click", function () {
+      const table = document.getElementById("myTable");
+      const pdf = new jsPDF('p','pt','a4');
+      pdf.autoTable({ html: table });
+      pdf.save("table.pdf");
+  });
+  </script>
 </body>
-<script src="./index.js"></script>
 
 </html>

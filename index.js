@@ -74,3 +74,25 @@ function showPrompt() {
 
 // Add Tag
 addTagBtn.addEventListener("click", showPrompt);
+
+
+// Download PDF
+// Export as PDF
+document.getElementById("exportPdfButton").addEventListener("click", function () {
+    const table = document.getElementById("myTable");
+    const pdf = new jsPDF();
+    pdf.autoTable({ html: table });
+    pdf.save("table.pdf");
+});
+
+// Export as PNG
+// document.getElementById("exportPdfButton").addEventListener("click", function () {
+//     const table = document.getElementById("myTable");
+//     html2canvas(table).then(function (canvas) {
+//         const pngDataUrl = canvas.toDataURL("image/png");
+//         const a = document.createElement("a");
+//         a.href = pngDataUrl;
+//         a.download = "table.png";
+//         a.click();
+//     });
+// });
